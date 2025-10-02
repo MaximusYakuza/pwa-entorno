@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pwa": "npm run build && workbox generateSW workbox-config.cjs",
     "preview": "vite preview",
+    "predeploy": "npm run build:pwa",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "echo \"No tests yet\" && exit 0",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "export:evidencias": "npm run build:pwa && node -e \"const fs=require('fs'); fs.copyFileSync('dist/sw.js','service-worker.js'); fs.copyFileSync('public/manifest.webmanifest','public/manifest.json'); console.log('✔ Evidencias copiadas: service-worker.js y public/manifest.json');\""
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -38,6 +43,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "gh-pages": "^6.3.0",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
