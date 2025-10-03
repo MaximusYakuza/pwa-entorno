@@ -1,29 +1,23 @@
+/* AppShell.tsx */
 import type { PropsWithChildren } from 'react';
 
 export default function AppShell({ children }: PropsWithChildren) {
   return (
-    <div
-      style={{ minHeight: '100vh', background: '#ffffff', color: '#0f172a' }}
-    >
-      <header
-        style={{ padding: '12px 16px', borderBottom: '1px solid #e2e8f0' }}
-      >
-        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 600 }}>
-          PWA Entorno
-        </h1>
+    <div className="app">
+      <header className="app-header">
+        <div className="container">
+          <h1>PWA Entorno</h1>
+        </div>
       </header>
 
-      <main style={{ padding: 16 }}>{children}</main>
+      <main className="container">
+        <div className="card">{children}</div>
+      </main>
 
-      <footer
-        style={{
-          padding: '12px 16px',
-          borderTop: '1px solid #e2e8f0',
-          fontSize: 12,
-          color: '#64748b',
-        }}
-      >
-        Modo offline habilitado
+      <footer className="app-footer">
+        <div className="container">
+          <small>Modo offline habilitado</small>
+        </div>
       </footer>
     </div>
   );
